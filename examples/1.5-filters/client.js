@@ -9,7 +9,7 @@ var Client = IgeClass.extend({
 
 		this.obj = [];
 
-		this.verdana = new IgeFontSheet('../assets/textures/fonts/verdana_10px.png', 20);
+		this.verdana = new IgeFontSheet('../assets/textures/fonts/verdana_10px.png');
 
 		// Load the fairy texture a few times and store it in the gameTexture array
 		gameTexture[0] = new IgeTexture('../assets/textures/sprites/lenna.png');
@@ -40,40 +40,29 @@ var Client = IgeClass.extend({
 				if (success) {
 					var yStart = -300;
 
-					// Create the scene
-					self.scene1 = new IgeScene2d()
-						.id('scene1');
-
-					// Create the main viewport and set the scene
-					// it will "look" at as the new scene1 we just
-					// created above
-					self.vp1 = new IgeViewport()
-						.id('vp1')
-						.autoSize(true)
-						.scene(self.scene1)
-						.drawBounds(true)
-						.mount(ige);
+					// Load the base scene data
+					ige.addGraph('IgeBaseScene');
 
 					// Create an entity and mount it to the scene
 					self.obj[0] = new IgeEntity()
 						.id('fairy0')
 						.depth(0)
-						.width(100)
+						.width(110)
 						.height(100)
 						.texture(gameTexture[0])
 						.translateTo(0, yStart + 70, 0)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					new IgeFontEntity()
 						.id('title0')
 						.depth(1)
-						.width(100)
+						.width(110)
 						.texture(self.verdana)
 						.textAlignX(1)
 						.text('Original Image')
 						.translateTo(0, yStart, 0)
 						.drawBounds(false)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					// Create a second IgeEntity entity and mount
 					// it to the first one at 0, 50 relative to the
@@ -81,283 +70,283 @@ var Client = IgeClass.extend({
 					self.obj[1] = new IgeEntity()
 						.id('fairy1')
 						.depth(0)
-						.width(100)
+						.width(110)
 						.height(100)
 						.texture(gameTexture[1])
 						.translateTo(-300, yStart + 220, 0)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					new IgeFontEntity()
 						.id('title1')
 						.depth(1)
-						.width(100)
+						.width(110)
 						.texture(self.verdana)
 						.textAlignX(1)
 						.text('Greyscale')
 						.translateTo(-300, yStart + 150, 0)
 						.drawBounds(false)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					// Create some more fairies and mount them to the scene
 					self.obj[2] = new IgeEntity()
 						.id('fairy2')
 						.depth(0)
-						.width(100)
+						.width(110)
 						.height(100)
 						.texture(gameTexture[2])
 						.translateTo(-150, yStart + 220, 0)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					new IgeFontEntity()
 						.id('title2')
 						.depth(1)
-						.width(100)
+						.width(110)
 						.texture(self.verdana)
 						.textAlignX(1)
 						.text('Brighten')
 						.translateTo(-150, yStart + 150, 0)
 						.drawBounds(false)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					self.obj[3] = new IgeEntity()
 						.id('fairy3')
 						.depth(0)
-						.width(100)
+						.width(110)
 						.height(100)
 						.texture(gameTexture[3])
 						.translateTo(0, yStart + 220, 0)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					new IgeFontEntity()
 						.id('title3')
 						.depth(1)
-						.width(100)
+						.width(110)
 						.texture(self.verdana)
 						.textAlignX(1)
 						.text('Threshold')
 						.translateTo(0, yStart + 150, 0)
 						.drawBounds(false)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					self.obj[4] = new IgeEntity()
 						.id('fairy4')
 						.depth(0)
-						.width(100)
+						.width(110)
 						.height(100)
 						.texture(gameTexture[4])
 						.translateTo(150, yStart + 220, 0)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					new IgeFontEntity()
 						.id('title4')
 						.depth(1)
-						.width(100)
+						.width(110)
 						.texture(self.verdana)
 						.textAlignX(1)
 						.text('Sharpen')
 						.translateTo(150, yStart + 150, 0)
 						.drawBounds(false)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					self.obj[5] = new IgeEntity()
 						.id('fairy5')
 						.depth(0)
-						.width(100)
+						.width(110)
 						.height(100)
 						.texture(gameTexture[5])
 						.translateTo(300, yStart + 220, 0)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					new IgeFontEntity()
 						.id('title5')
 						.depth(1)
-						.width(100)
+						.width(110)
 						.texture(self.verdana)
 						.textAlignX(1)
 						.text('Blur')
 						.translateTo(300, yStart + 150, 0)
 						.drawBounds(false)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					self.obj[6] = new IgeEntity()
 						.id('fairy6')
 						.depth(0)
-						.width(100)
+						.width(110)
 						.height(100)
 						.texture(gameTexture[6])
 						.translateTo(-300, yStart + 370, 0)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					new IgeFontEntity()
 						.id('title6')
 						.depth(1)
-						.width(100)
+						.width(110)
 						.texture(self.verdana)
 						.textAlignX(1)
 						.text('Emboss')
 						.translateTo(-300, yStart + 300, 0)
 						.drawBounds(false)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					self.obj[7] = new IgeEntity()
 						.id('fairy7')
 						.depth(0)
-						.width(100)
+						.width(110)
 						.height(100)
 						.texture(gameTexture[7])
 						.translateTo(-150, yStart + 370, 0)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					new IgeFontEntity()
 						.id('title7')
 						.depth(1)
-						.width(100)
+						.width(110)
 						.texture(self.verdana)
 						.textAlignX(1)
 						.text('Edge Detect')
 						.translateTo(-150, yStart + 300, 0)
 						.drawBounds(false)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					self.obj[8] = new IgeEntity()
 						.id('fairy8')
 						.depth(0)
-						.width(100)
+						.width(110)
 						.height(100)
 						.texture(gameTexture[8])
 						.translateTo(0, yStart + 370, 0)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					new IgeFontEntity()
 						.id('title8')
 						.depth(1)
-						.width(100)
+						.width(110)
 						.texture(self.verdana)
 						.textAlignX(1)
 						.text('Edge Enhance')
 						.translateTo(0, yStart + 300, 0)
 						.drawBounds(false)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					self.obj[9] = new IgeEntity()
 						.id('fairy9')
 						.depth(0)
-						.width(100)
+						.width(110)
 						.height(100)
 						.texture(gameTexture[9])
 						.translateTo(150, yStart + 370, 0)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					new IgeFontEntity()
 						.id('title9')
 						.depth(1)
-						.width(100)
+						.width(110)
 						.texture(self.verdana)
 						.textAlignX(1)
 						.text('Color Overlay')
 						.translateTo(150, yStart + 300, 0)
 						.drawBounds(false)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					self.obj[10] = new IgeEntity()
 						.id('fairy10')
 						.depth(0)
-						.width(100)
+						.width(110)
 						.height(100)
 						.texture(gameTexture[10])
 						.translateTo(300, yStart + 370, 0)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					new IgeFontEntity()
 						.id('title10')
 						.depth(1)
-						.width(100)
+						.width(110)
 						.texture(self.verdana)
 						.textAlignX(1)
 						.text('Sobel')
 						.translateTo(300, yStart + 300, 0)
 						.drawBounds(false)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					self.obj[11] = new IgeEntity()
 						.id('fairy11')
 						.depth(0)
-						.width(100)
+						.width(110)
 						.height(100)
 						.texture(gameTexture[11])
 						.translateTo(-300, yStart + 520, 0)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					new IgeFontEntity()
 						.id('title11')
 						.depth(1)
-						.width(100)
+						.width(110)
 						.texture(self.verdana)
 						.textAlignX(1)
 						.text('Glow: Original')
 						.translateTo(-300, yStart + 450, 0)
 						.drawBounds(false)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					self.obj[12] = new IgeEntity()
 						.id('fairy12')
 						.depth(0)
-						.width(100)
+						.width(110)
 						.height(100)
 						.texture(gameTexture[12])
 						.translateTo(-150, yStart + 520, 0)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					new IgeFontEntity()
 						.id('title12')
 						.depth(1)
-						.width(100)
+						.width(110)
 						.texture(self.verdana)
 						.textAlignX(1)
 						.text('Glow: Mask Image')
 						.translateTo(-150, yStart + 450, 0)
 						.drawBounds(false)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					self.obj[13] = new IgeEntity()
 						.id('fairy13')
 						.depth(0)
-						.width(100)
+						.width(110)
 						.height(100)
 						.texture(gameTexture[13])
 						.translateTo(0, yStart + 520, 0)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					new IgeFontEntity()
 						.id('title13')
 						.depth(1)
-						.width(100)
+						.width(110)
 						.texture(self.verdana)
 						.textAlignX(1)
 						.text('Glow: Result')
 						.translateTo(0, yStart + 450, 0)
 						.drawBounds(false)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					self.obj[14] = new IgeEntity()
 						.id('fairy14')
 						.depth(0)
-						.width(100)
+						.width(110)
 						.height(100)
 						.texture(gameTexture[14])
 						.translateTo(150, yStart + 520, 0)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					new IgeFontEntity()
 						.id('title14')
 						.depth(1)
-						.width(100)
+						.width(110)
 						.texture(self.verdana)
 						.textAlignX(1)
 						.text('Glow: Dynamic')
 						.translateTo(150, yStart + 450, 0)
 						.drawBounds(false)
-						.mount(self.scene1);
+						.mount(ige.$('baseScene'));
 
 					// Apply a greyscale filter to JUST the first fairy texture
 					gameTexture[1].applyFilter(IgeFilters.greyScale);

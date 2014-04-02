@@ -47,6 +47,7 @@ var Client = IgeClass.extend({
 						.mount(self.mainScene);
 
 					self.objectLayer = new IgeTileMap2d()
+						.addComponent(IgeEntityManager)
 						.id('objectLayer')
 						.depth(1)
 						.isometricMounts(true)
@@ -104,6 +105,9 @@ var Client = IgeClass.extend({
 					// Tell the camera to track our player character with some
 					// tracking smoothing (set to 20)
 					self.vp1.camera.trackTranslate(self.player1, 20);
+					
+					// Set the camera to round it's translate value to avoid sub-pixel rendering
+					self.vp1.camera.trackTranslateRounding(true);
 
 					// Load the Tiled map data and handle the return data
 					ige.addComponent(IgeTiledComponent)
@@ -138,6 +142,8 @@ var Client = IgeClass.extend({
 									layerArray[i]
 										.tileWidth(40)
 										.tileHeight(40)
+										.drawMouse(true)
+										.hoverColor('#ffffff')
 										.autoSection(20)
 										//.isometricMounts(false)
 										.drawBounds(false)
@@ -166,7 +172,7 @@ var Client = IgeClass.extend({
 							// using the path finder to find their way around. When they complete
 							// a path they will choose a new random destination and path to it.
 							// All the AI character code is in the gameClasses/CharacterAi.js
-							for (i = 0; i < 20; i++) {
+							for (i = 0; i < 200; i++) {
 								// Pick a random tile for the entity to start on
 								while (destTileX < 0 || destTileY < 0 || !layersById.DirtLayer.map._mapData[destTileY] || !tileChecker(layersById.DirtLayer.map._mapData[destTileY][destTileX])) {
 									destTileX = Math.random() * 20 | 0;
@@ -179,13 +185,14 @@ var Client = IgeClass.extend({
 									.drawBoundsData(false)
 									.isometric(true) // Set to use isometric movement
 									.mount(self.objectLayer)
+									.managed(2)
 									.translateToTile(destTileX, destTileY, 0);
 
 								destTileX = -1;
 								destTileY = -1;
 							}
 						});
-
+					
 					// Add the box2d debug painter entity to the
 					// scene to show the box2d body outlines
 					//ige.box2d.enableDebug(self.objectLayer);

@@ -18,14 +18,16 @@
 	<div class="content"><a href="IgeEventingClass.html">IgeEventingClass</a></div>
 </div>
 <!--=if{extends}]-->
-<h2>Methods</h2><h3 class="methodTitle">init</h3>
+<h2>Methods</h2><a name="init"></a>
+<h3 class="methodTitle">init</h3>
 <div class="methodSection">
     <!---->
     <div class="methodDefinition"><span class="methodName">init</span>({<span class="argType">Object</span>} <span class="argName">entity</span>, {<span class="argType">Object</span>} <span class="argName">options</span>)</div>
     <div class="methodArgs"><ul class="argList"><li>{<span class="argType">Object</span>}<span class="argName">entity</span> The parent object that this component is being added to.</li><li>{<span class="argType">Object</span>}<span class="argName">options</span> An optional object that is passed to the component when it is being initialised.</li></ul></div>
     <div class="methodReturnDesc"></div>
     
-</div><h3 class="methodTitle">define</h3>
+</div><a name="define"></a>
+<h3 class="methodTitle">define</h3>
 <div class="methodSection">
     <!--=if{desc}[-->
     <div class="methodDesc">Defines an animation specifying the frames to use, the frames per second to animate at and if the animation should loop and if so, how many times.</div>
@@ -47,7 +49,8 @@ var entity = new IgeEntity()
 </div>
 					</div>
 				
-</div><h3 class="methodTitle">setFps</h3>
+</div><a name="setFps"></a>
+<h3 class="methodTitle">setFps</h3>
 <div class="methodSection">
     <!--=if{desc}[-->
     <div class="methodDesc">Sets the specified animation's FPS.</div>
@@ -71,7 +74,8 @@ entity.animation.setFps('anim1', 12);
 </div>
 					</div>
 				
-</div><h3 class="methodTitle">setAllFps</h3>
+</div><a name="setAllFps"></a>
+<h3 class="methodTitle">setAllFps</h3>
 <div class="methodSection">
     <!--=if{desc}[-->
     <div class="methodDesc">Sets all the animations assigned to an entity to the specified FPS.</div>
@@ -96,7 +100,18 @@ entity.animation.setAllFps(12);
 </div>
 					</div>
 				
-</div><h3 class="methodTitle">start</h3>
+</div><a name="playing"></a>
+<h3 class="methodTitle">playing</h3>
+<div class="methodSection">
+    <!--=if{desc}[-->
+    <div class="methodDesc">Checks the current animation state, either started or stopped.</div>
+    <!--=if{desc}]-->
+    <div class="methodDefinition"><span class="methodName">playing</span>()</div>
+    <div class="methodArgs"></div>
+    <div class="methodReturnDesc">Returns {<span class="argType">Boolean</span>} True if an animation is currently playing or false if not.</div>
+    
+</div><a name="start"></a>
+<h3 class="methodTitle">start</h3>
 <div class="methodSection">
     <!--=if{desc}[-->
     <div class="methodDesc">Starts an animation from the beginning frame.</div>
@@ -119,7 +134,72 @@ entity.animation.start('anim1');
 </div>
 					</div>
 				
-</div><h3 class="methodTitle">select</h3>
+					<div class="methodExample">
+						<div class="content"><h1>Start an animation with callbacks for animation events</h1>
+
+<pre><code>// Create an entity, add the animation component, define
+// an animation and then start it
+var entity = new IgeEntity()
+    .addComponent(IgeAnimationComponent)
+    .animation.define('anim1', [1, 2, 3, 4], 25, -1);
+
+// In each animation callback...
+// this = the entity's animation component instance
+// anim = the animation component's _anim object
+// this._entity = the entity the animation is attached to
+
+entity.animation.start('anim1', {
+        onLoop: function (anim) {
+            console.log('Animation looped', this, anim);    
+        },
+        onStopped: function (anim) {
+            console.log('Animation stopped', this, anim);   
+        },
+        onComplete: function (anim) {
+            console.log('Animation completed', this, anim); 
+        }
+});
+</code></pre>
+</div>
+					</div>
+				
+					<div class="methodExample">
+						<div class="content"><h1>Start an animation with callbacks for animation events via event listeners</h1>
+
+<pre><code>// Create an entity, add the animation component, define
+// an animation and then start it
+var entity = new IgeEntity()
+    .addComponent(IgeAnimationComponent)
+    .animation.define('anim1', [1, 2, 3, 4], 25, -1);
+
+// In each animation callback...
+// this = the entity's animation component instance
+// anim = the animation component's _anim object
+// this._entity = the entity the animation is attached to
+
+entity.animation.on('started', function (anim) {
+        console.log('Animation started', this, anim);   
+});
+
+entity.animation.on('loopComplete', function (anim) {
+        console.log('Animation looped', this, anim);    
+});
+
+entity.animation.on('stopped', function (anim) {
+        console.log('Animation stopped', this, anim);   
+});
+
+entity.animation.on('complete', function (anim) {
+        console.log('Animation complete', this, anim);  
+});
+
+entity.animation.start('anim1');
+</code></pre>
+</div>
+					</div>
+				
+</div><a name="select"></a>
+<h3 class="methodTitle">select</h3>
 <div class="methodSection">
     <!--=if{desc}[-->
     <div class="methodDesc">Starts an animation only if the passed animation is not already started.</div>
@@ -147,7 +227,8 @@ entity.animation.select('anim1');
 </div>
 					</div>
 				
-</div><h3 class="methodTitle">stop</h3>
+</div><a name="stop"></a>
+<h3 class="methodTitle">stop</h3>
 <div class="methodSection">
     <!--=if{desc}[-->
     <div class="methodDesc">Stops the current animation.</div>
@@ -164,7 +245,8 @@ entity.animation.select('anim1');
 </div>
 					</div>
 				
-</div><h3 class="methodTitle">_update</h3>
+</div><a name="_update"></a>
+<h3 class="methodTitle">_update</h3>
 <div class="methodSection">
     <!--=if{desc}[-->
     <div class="methodDesc">Handles the animation processing each update.</div>
